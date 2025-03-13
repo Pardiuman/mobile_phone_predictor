@@ -7,20 +7,19 @@ import os
 import argparse
 
 # Parse input arguments
-#parser = argparse.Parser()
-#parser.add_argument("--mobile_data", type=str, required=True, help="Path to mobile data")
-#args = parser.parse_args()
-
-parser = argparse.ArgumentParser()  # Fixed: Changed Parser() to ArgumentParser()
+parser = argparse.ArgumentParser()
 parser.add_argument("--mobile_data", type=str, required=True, help="Path to mobile data")
 args = parser.parse_args()
 
+# Since Azure ML mounts the input as a directory, append the filename
+input_dir = args.mobile_data  # This is the mounted directory, e.g., /mnt/azureml/.../INPUT_mobile_data
+csv_file_path = os.path.join(input_dir, "mobile_data.csv")  # Explicitly specify the file
 
 # Load dataset with latin1 encoding
 try:
-    data = pd.read_csv(args.mobile_data, encoding="latin1")
+    data = pd.read_csv(csv_file_path, encoding="latin1")
 except Exception as e:
-    print(f"Failed to load dataset: {e}")
+    print(f"Failed to load dataset from {csv_file_path}: {e}")
     raise
 
 # Debug: Print raw data
@@ -67,20 +66,10 @@ y_pred = model.predict(X_test)
 print(f"Mean Squared Error: {mean_squared_error(y_test, y_pred)}")
 print(f"R^2 Score: {r2_score(y_test, y_pred)}")
 
-
+# Save the model
 output_dir = os.path.join(os.environ.get("AZUREML_OUTPUTS_DEFAULT", "."), "outputs")
 print(f"Output directory: {output_dir}")
 os.makedirs(output_dir, exist_ok=True)
 model_path = os.path.join(output_dir, "mobile_price_predictor.pkl")
 joblib.dump(model, model_path)
 print(f"Model saved to {model_path}")
-
-
-#output_dir = "azureml://datastores/workspaceblobstore/paths/model-outputs"
-#output_dir = os.environ.get("AZUREML_OUTPUT_model_output", os.environ.get("AZUREML_OUTPUTS_DEFAULT", "azureml://datastores/workspaceblobstore/paths/model-outputs1/"))
-#print(f"Output directory: {output_dir}")
-#os.makedirs(output_dir, exist_ok=True)  # Create the folder if it doesn't exist
-
-#model_path = os.path.join(output_dir, "mobile_price_predictor.pkl")
-#joblib.dump(model, model_path)
-#print(f"Model saved to {model_path}")

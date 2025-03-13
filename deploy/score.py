@@ -8,6 +8,7 @@ def init():
     global model
     # Load the model from the registered model path
     #model_path = Model.get_model_path("mobile_price_predictor")
+    print(os.getenv('AZUREML_MODEL_DIR'))
     model_dir = os.path.join(os.getenv('AZUREML_MODEL_DIR'))
     print(model_path)
     model_path = os.path.join(model_dir, "mobile_price_predictor.pkl")
