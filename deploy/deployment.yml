@@ -1,0 +1,12 @@
+$schema: https://azuremlschemas.azureedge.net/latest/managedOnlineDeployment.schema.json
+name: mobile-price-deployment1
+endpoint_name: mobile-price-endpoint
+model: azureml:mobile_price_predictor@latest
+code_configuration:
+  code: .
+  scoring_script: score.py
+environment:
+  conda_file: coda-inference.yml  # Or conda-inference.yml if that’s what you named it
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest
+instance_type: Standard_DS2_v2
+instance_count: 1

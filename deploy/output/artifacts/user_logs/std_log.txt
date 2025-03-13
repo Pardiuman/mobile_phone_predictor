@@ -1,0 +1,23 @@
+/bin/bash: /azureml-envs/azureml_929a09250d072fff45bceed0356de71d/lib/libtinfo.so.6: no version information available (required by /bin/bash)
+Raw data sample:
+  Company Name            Model Name  ... Launched Price (Dubai) Launched Year
+0        Apple       iPhone 16 128GB  ...              AED 2,799          2024
+1        Apple       iPhone 16 256GB  ...              AED 2,999          2024
+2        Apple       iPhone 16 512GB  ...              AED 3,199          2024
+3        Apple  iPhone 16 Plus 128GB  ...              AED 3,199          2024
+4        Apple  iPhone 16 Plus 256GB  ...              AED 3,399          2024
+
+[5 rows x 15 columns]
+Preprocessed data sample:
+  Company Name            Model Name  ...  Launched Price (Dubai)  Launched Year
+0        Apple       iPhone 16 128GB  ...               AED 2,799           2024
+1        Apple       iPhone 16 256GB  ...               AED 2,999           2024
+2        Apple       iPhone 16 512GB  ...               AED 3,199           2024
+3        Apple  iPhone 16 Plus 128GB  ...               AED 3,199           2024
+4        Apple  iPhone 16 Plus 256GB  ...               AED 3,399           2024
+
+[5 rows x 15 columns]
+Mean Squared Error: 527405.8723449142
+R^2 Score: -2.0469336830694775
+Output directory: ./outputs
+Model saved to ./outputs/mobile_price_predictor.pkl

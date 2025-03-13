@@ -1,0 +1,17 @@
+$schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
+command: python train_model.py --mobile_data ${{inputs.mobile_data}}
+code: .
+environment:
+  image: mcr.microsoft.com/azureml/openmpi4.1.0-ubuntu20.04:latest
+  conda_file: conda_dependencies.yml
+compute: azureml:cpu-cluster
+display_name: mobile-price-prediction
+experiment_name: mobile-price-experiment
+inputs:
+  mobile_data:
+    type: uri_file
+    path: azureml:mobile-data@latest  # Reference the registered dataset
+outputs:
+  model:
+    type: uri_folder
+    path: azureml://datastores/workspaceblobstore/paths/model-outputs/

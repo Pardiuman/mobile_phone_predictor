@@ -1,0 +1,12 @@
+name: mobile-price-env
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - scikit-learn
+  - pandas
+  - joblib
+  - pip
+  - pip:
+      - azure-ai-ml  # v2 SDK for MLClient
+      - azure-identity  # For DefaultAzureCredential

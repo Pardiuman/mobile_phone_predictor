@@ -1,0 +1,12 @@
+name: inference_env
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+    - azureml-core
+    - azureml-defaults
+    - pandas
+    - scikit-learn
+    - joblib

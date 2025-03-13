@@ -1,0 +1,8 @@
+{
+  "script": "train_model.py",
+  "computeTarget": "local",
+  "environment": {
+    "name": "azure-ml-env",
+    "dependencies": "conda_dependencies.yml"
+  }
+}
