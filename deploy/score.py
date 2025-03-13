@@ -10,7 +10,7 @@ def init():
     #model_path = Model.get_model_path("mobile_price_predictor")
     print(os.getenv('AZUREML_MODEL_DIR'))
     model_dir = os.path.join(os.getenv('AZUREML_MODEL_DIR'))
-    print(model_path)
+    #print(model_path)
     model_path = os.path.join(model_dir, "mobile_price_predictor.pkl")
     model = joblib.load(model_path)
     #model = joblib.load(model_path + "/1/mobile_price_predictor.pkl")
