@@ -1,3 +1,15 @@
+# Azure ML MLOps Setup
+
+This repository contains commands and configurations to set up an Azure Machine Learning workspace, manage datasets, compute resources, jobs, models, and endpoints for a machine learning operations (MLOps) pipeline.
+
+## Prerequisites
+- Azure CLI installed
+- Azure Machine Learning CLI extension (`az extension add -n ml`)
+- An Azure subscription
+- Resource group named `mlops` created in advance
+
+## Setup Instructions
+
 # Create an Azure ML workspace
 az ml workspace create --name mlops1 --resource-group mlops --location eastus
 
@@ -36,5 +48,7 @@ az ml model create --name "mobile_price_predictor" --path ./mobile_price_predict
 # Create the endpoint
 az ml online-endpoint create --file endpoint.yml --resource-group mlops --workspace-name mlops1
 
-# Create deployment
+# Create deployment---> getting error at this point
 az ml online-deployment create --file deployment.yml --resource-group mlops --workspace-name mlops1 --debug
+
+
