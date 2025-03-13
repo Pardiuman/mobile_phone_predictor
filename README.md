@@ -6,7 +6,7 @@ This repository contains commands and configurations to set up an Azure Machine 
 - Azure CLI installed
 - Azure Machine Learning CLI extension (`az extension add -n ml`)
 - An Azure subscription
-- Resource group named `mlops` created in advance
+- Resource group named `mlops` created in advance (`az group create --name mlops --location eastus`)
 
 ## Setup Instructions
 
