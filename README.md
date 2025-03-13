@@ -49,4 +49,31 @@ az ml online-endpoint create --file endpoint.yml --resource-group mlops --worksp
 # Create deployment---> getting error at this point
 az ml online-deployment create --file deployment.yml --resource-group mlops --workspace-name mlops1 --debug
 
+# create the endpoint
+az ml online-endpoint create --file endpoint.yml --resource-group mlops --workspace-name mlops1
 
+# create deployment 
+az ml online-deployment create --file deployment.yml --resource-group mlops --workspace-name mlops1 --debug
+
+# get the endpoint
+az ml online-endpoint show \
+    --name mobile-price-endpoint \
+    --resource-group mlops \
+    --workspace-name mlops1 \
+    --query scoring_uri \
+    --output tsv
+
+# get the primary key
+az ml online-endpoint get-credentials \
+    --name mobile-price-endpoint \
+    --resource-group mlops \
+    --workspace-name mlops1 \
+    --query primaryKey \
+    --output tsv
+
+# Now test the rest api with following CURL
+curl -X POST \
+   -H "Authorization: Bearer "$THE_TOKEN_THAT_WE_GOT_FROM_UPPER_COMAND" \
+ -H "Content-Type: application/json" \
+ -d '{"data": [[174.0, 6.0, 3600.0, 6.1, 2024]]}' \
+ "$THE_ENDPOINT_THAT_WE_GOT_FROM_GET_THE_ENDPOINT_STEP"
