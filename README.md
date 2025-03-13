@@ -7,6 +7,7 @@ az ml datastore upload -w mlops1 -g mlops \
     -p ./data \
     -u mobile_data
 
+# Upload dataset from datastore
 az ml data create --name mobile-data \
     --path azureml://datastores/workspaceblobstore/paths/mobile_data/mobile_data.csv \
     --type uri_file \
