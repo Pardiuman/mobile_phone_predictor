@@ -46,14 +46,16 @@ az ml model create --name "mobile_price_predictor" --path ./mobile_price_predict
 cd ../../..
 az ml online-endpoint create --file endpoint.yml --resource-group mlops --workspace-name mlops1
 
-# Create deployment---> getting error at this point
-az ml online-deployment create --file deployment.yml --resource-group mlops --workspace-name mlops1 --debug
-
-# create the endpoint
-az ml online-endpoint create --file endpoint.yml --resource-group mlops --workspace-name mlops1
-
 # create deployment 
 az ml online-deployment create --file deployment.yml --resource-group mlops --workspace-name mlops1 --debug
+
+
+# update endpoint to traffic 100 to latest deployment
+az ml online-endpoint update \
+    --name mobile-price-endpoint \
+    --traffic mobile-price-deployment1=100 \
+    --resource-group mlops \
+    --workspace-name mlops1
 
 # get the endpoint
 az ml online-endpoint show \
